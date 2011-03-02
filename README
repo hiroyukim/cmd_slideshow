@@ -1,0 +1,28 @@
+* 目的
+
+このコードは
+
+cat hatena.txt | cmd_slideshow.pl
+
+でslideshowを作ることを目的にしたものです。
+
+ちょっとした思いつきでスライドを作るのが面倒だからつくってみることにしました。
+
+* 使い方
+
+書く予定
+
+
+* TODO
+
+- paging
+-- DOMによる分割
+- template fileの設置
+
+* Module
+
+- Text::Xatena
+
+* 参照先
+
+- http://code.google.com/p/google-code-prettify/
