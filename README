@@ -21,7 +21,13 @@ cat hatena.txt | cmd_slideshow.pl
 
 * Module
 
+- Encode
+- Path::Class
 - Text::Xatena
+- Text::Xslate
+- File::HomeDir
+- FindBin
+- File::Copy::Recursive
 
 * 参照先
 
