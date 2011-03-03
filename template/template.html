@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>[% page %]/[% total %]</title>
+</head>
+<body>
+
+[% text | mark_raw %]
+
+[[% IF page > 1 %]<a href="[% page - 1 %].html">PREV</a>[% ELSE %]PREV[% END %]]
+[[% IF page < total %]<a href="[% page + 1 %].html">NEXT</a>[% ELSE %]NEXT[% END %]] 
+</body>
+</html>
