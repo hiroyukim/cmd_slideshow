@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>[% page %]/[% total %]</title>
+    <meta charset="UTF-8">
+    <link href="./prettify/prettify.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="./prettify/prettify.js"></script>
 </head>
-<body>
+<body onload="prettyPrint();">
 
 [% text | mark_raw %]
 
