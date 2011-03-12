@@ -4,16 +4,18 @@ use warnings;
 use utf8;
 use Text::Xatena;
 use Encode;
-use FindBin;
+use Cwd;
 use Path::Class;
 use File::HomeDir;
 use Text::Xslate;
+use File::Copy::Recursive qw(dircopy);
 
 binmode STDIN, ':utf8';
 
 my $dir          = dir(File::HomeDir->my_home, ".cmd_slideshow"); 
+my $prettify_dir = dir($dir, "prettify"); 
 my $template     = 'template.html';
-my $output_dir   = dir($FindBin::Bin,'slideshow');
+my $output_dir   = dir(cwd(),'slideshow');
 my $thx          = Text::Xatena->new;
 my $tx           = Text::Xslate->new( syntax => 'TTerse', path => [$dir]);
 
@@ -45,6 +47,8 @@ sub init {
 
     unless( -e $output_dir ) {
         mkdir $output_dir;
+        local $File::Copy::Recursive::CopyLink = 0;
+        dircopy($prettify_dir,dir($output_dir,"prettify"));
     }
 }
 
