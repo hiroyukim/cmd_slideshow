@@ -10,7 +10,7 @@ cat hatena.txt | cmd_slideshow.pl
 
 * 使い方
 
-書く予定
+
 
 
 * TODO
@@ -26,8 +26,8 @@ cat hatena.txt | cmd_slideshow.pl
 - Text::Xatena
 - Text::Xslate
 - File::HomeDir
-- FindBin
 - File::Copy::Recursive
+- Cwd
 
 * 参照先
 

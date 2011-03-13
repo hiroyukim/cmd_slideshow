@@ -15,6 +15,7 @@ binmode STDIN, ':utf8';
 
 my $dir          = dir(File::HomeDir->my_home, ".cmd_slideshow"); 
 my $prettify_dir = dir($dir, "prettify"); 
+my $title_template = 'title_template.html';
 my $template     = 'template.html';
 my $output_dir   = dir(cwd(),'slideshow');
 my $thx          = Text::Xatena->new( hatena_compatible => 1 );
@@ -34,16 +35,19 @@ sub parse {
     return $thx->format($text);
 }
 
+
 sub render {
-    my ($html,$id,$total) = @_;
+    my ($html,$id,$total,$title,$author) = @_;
 
     open my $fh, '>:utf8', "$output_dir/$id.html";
     my $string = $tx->render(
-        $template,
+        ( $id == 1 ) ? $title_template : $template,
         { 
-            total => $total, 
-            page => $id,
-            text => $html, 
+            total  => $total, 
+            page   => $id,
+            text   => $html, 
+            title  => $title,
+            author => $author,
         }
     );
     print $fh $string; 
@@ -66,12 +70,16 @@ sub main {
 
     init();
 
-    my $text  = join('', <STDIN>);
-    my $total = ($text =~ /^(__NEXT__)$/mg ) + 1;
+    my $text           = join('', <STDIN>);
+    my ($header,$body) = split /^__HEADER__$/m, $text;  
+    my ($title)        = ($header =~ /^title:\s?(.+?)$/m); 
+    my ($author)       = ($header =~ /^author:\s?(.+?)$/m); 
+    my $total          = ($body =~ /^(__NEXT__)$/mg ) + 2;
 
-    my $id = 1;
-    for my $line ( split /^__NEXT__$/m, $text ) { 
-        render( parse( $line ), $id++, $total );                
+    render( '', 1, $total ,$title, $author);                
+    my $id = 2;
+    for my $line ( split /^__NEXT__$/m, $body ) { 
+        render( parse( $line ), $id++, $total ,$title, $author);                
     }
 
 }
