@@ -17,7 +17,7 @@ my $dir          = dir(File::HomeDir->my_home, ".cmd_slideshow");
 my $prettify_dir = dir($dir, "prettify"); 
 my $template     = 'template.html';
 my $output_dir   = dir(cwd(),'slideshow');
-my $thx          = Text::Xatena->new;
+my $thx          = Text::Xatena->new( hatena_compatible => 1 );
 my $tx           = Text::Xslate->new( syntax => 'TTerse', path => [$dir]);
 
 no strict 'refs';
