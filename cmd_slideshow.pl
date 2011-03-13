@@ -9,6 +9,7 @@ use Path::Class;
 use File::HomeDir;
 use Text::Xslate;
 use File::Copy::Recursive qw(dircopy);
+use Text::Xatena::Util;
 
 binmode STDIN, ':utf8';
 
@@ -18,6 +19,15 @@ my $template     = 'template.html';
 my $output_dir   = dir(cwd(),'slideshow');
 my $thx          = Text::Xatena->new;
 my $tx           = Text::Xslate->new( syntax => 'TTerse', path => [$dir]);
+
+no strict 'refs';
+no warnings 'redefine';
+local *{"Text::Xatena::Node::SuperPre\::as_html"} = sub {
+    my ($self, %opts) = @_;
+    sprintf('<pre class="prettyprint">%s</pre>',
+        escape_html(join "", @{ $self->children })
+    );
+};
 
 sub parse {
     my $text = shift;
