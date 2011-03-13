@@ -74,7 +74,8 @@ sub main {
     my ($header,$body) = split /^__HEADER__$/m, $text;  
     my ($title)        = ($header =~ /^title:\s?(.+?)$/m); 
     my ($author)       = ($header =~ /^author:\s?(.+?)$/m); 
-    my $total          = ($body =~ /^(__NEXT__)$/mg ) + 2;
+    my @count          = ($body =~ /^(__NEXT__)$/mg );
+    my $total          = @count + 2;
 
     render( '', 1, $total ,$title, $author);                
     my $id = 2;
