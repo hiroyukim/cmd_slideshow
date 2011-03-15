@@ -7,6 +7,7 @@
     <link href="./js/prettify/prettify.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="./js/prettify/prettify.js"></script>
     <script type="text/javascript">
+         var next_page = [% IF page == total %]undefined[% ELSE %]'[% page + 1 %].html'[% END %];
          $(document).ready(function(){
              $('#main').children().each(function(){
                  $(this).css('display','none');
@@ -22,6 +23,12 @@
                          break;
                      }
                  }
+             });
+
+             $(window).keydown(function(e){
+                 if( next_page ) {   
+                    location.href = next_page;
+                 }    
              });
          });
     </script>      
