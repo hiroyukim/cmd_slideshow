@@ -14,7 +14,7 @@ use Text::Xatena::Util;
 binmode STDIN, ':utf8';
 
 my $dir          = dir(File::HomeDir->my_home, ".cmd_slideshow"); 
-my $prettify_dir = dir($dir, "prettify"); 
+my $js_dir       = dir($dir, "js"); 
 my $title_template = 'title_template.html';
 my $template     = 'template.html';
 my $output_dir   = dir(cwd(),'slideshow');
@@ -62,7 +62,7 @@ sub init {
     unless( -e $output_dir ) {
         mkdir $output_dir;
         local $File::Copy::Recursive::CopyLink = 0;
-        dircopy($prettify_dir,dir($output_dir,"prettify"));
+        dircopy($js_dir,dir($output_dir,"js"));
     }
 }
 
