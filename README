@@ -10,8 +10,25 @@ cat hatena.txt | cmd_slideshow.pl
 
 * 使い方
 
+cat source.txt | cmd_slideshow.pl
 
+** source.txt
 
+title: hoge
+author: hoge
+__HEADER__
+* Hello World
+
+>|perl|
+use strict;
+use warnings;
+
+print "hello world\n";
+||<
+
+__NEXT__
+
+* next page
 
 * TODO
 
